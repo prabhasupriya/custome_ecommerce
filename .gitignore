@@ -1,0 +1,27 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+.env
+
+# Data and Models (Keep the folders, ignore the files)
+data/raw/*.csv
+data/processed/*.csv
+models/*.pkl
+models/*.csv
+!models/.gitkeep
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore

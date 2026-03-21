@@ -1,0 +1,35 @@
+{
+    "original_rows": 525461,
+    "rows_after_cleaning": 342273,
+    "rows_removed": 0,
+    "steps_applied": [
+        {
+            "step": "remove_missing_customer_ids",
+            "removed": 107927
+        },
+        {
+            "step": "handle_cancelled_invoices",
+            "removed": 9839
+        },
+        {
+            "step": "handle_negative_quantities",
+            "removed": 0
+        },
+        {
+            "step": "handle_zero_prices",
+            "removed": 31
+        },
+        {
+            "step": "handle_missing_descriptions",
+            "removed": 0
+        },
+        {
+            "step": "remove_outliers",
+            "removed": 59051
+        },
+        {
+            "step": "remove_duplicates",
+            "removed": 6340
+        }
+    ]
+}

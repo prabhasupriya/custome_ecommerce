@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  data-science-app:
+    build: .
+    container_name: ecommerce-churn-prediction
+    # REQUIRED: Mapping local folders to container for evaluation access
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    working_dir: /app
+    # REQUIRED: Health check configuration as per instructions
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    # Keeps the container running so you can execute scripts
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null

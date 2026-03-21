@@ -1,0 +1,8 @@
+{
+    "model_name": "Logistic Regression (Baseline)",
+    "accuracy": 0.7260981912144703,
+    "precision": 0.5263157894736842,
+    "recall": 0.18518518518518517,
+    "f1_score": 0.273972602739726,
+    "roc_auc": 0.7553763440860215
+}

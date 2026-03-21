@@ -1,0 +1,11 @@
+{
+    "total_rows": 342273,
+    "total_columns": 13,
+    "date_range": "2009-12-01 07:45:00 to 2010-12-09 20:01:00",
+    "unique_customers": 4140,
+    "unique_products": 3644,
+    "unique_countries": 37,
+    "total_revenue": 4479987.023999998,
+    "average_order_value": 260.22229460966537,
+    "validation_passed": true
+}

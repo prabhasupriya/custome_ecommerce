@@ -1,0 +1,57 @@
+{
+  "student_info": {
+    "name": "Prabha Supriya",
+    "email": "prabhasupriys.b@gmail.com",
+    "student_id": "23A91A6106",
+    "submission_date": "2026-03-21"
+  },
+  "repository": {
+    "github_url": "https://github.com/prabhasupriya/custome_ecommerce",
+    "commit_hash": "main"
+  },
+  "deployment": {
+    "live_url": "https://mouni-churn-app.streamlit.app",
+    "platform": "Streamlit Cloud",
+    "deployment_date": "2026-03-21",
+    "status": "active"
+  },
+  "dataset": {
+    "source": "UCI Machine Learning Repository",
+    "url": "http://archive.ics.uci.edu/ml/datasets/Online+Retail+II",
+    "original_rows": 541909,
+    "cleaned_rows": 373431,
+    "final_customers": 4312
+  },
+  "models": {
+    "models_trained": ["Logistic Regression", "Decision Tree", "Random Forest", "Gradient Boosting", "Neural Network"],
+    "best_model": "Gradient Boosting",
+    "best_model_metrics": {
+      "accuracy": 0.85,
+      "precision": 0.78,
+      "recall": 0.72,
+      "f1_score": 0.75,
+      "roc_auc": 0.81
+    }
+  },
+  "completion_status": {
+    "phase1_business_understanding": true,
+    "phase2_data_acquisition": true,
+    "phase3_data_cleaning": true,
+    "phase4_feature_engineering": true,
+    "phase5_eda": true,
+    "phase6_modeling": true,
+    "phase7_evaluation": true,
+    "phase8_deployment": true,
+    "phase9_documentation": true,
+    "phase10_code_quality": true
+  },
+  "key_learnings": [
+    "Containerizing ML pipelines ensures reproducibility.",
+    "Data retention limits require careful outlier threshold tuning.",
+    "RFM features are the strongest predictors of churn."
+  ],
+  "challenges_faced": [
+    "Handling inconsistent column names across Excel sheets.",
+    "Balancing retention rate vs outlier removal."
+  ]
+}

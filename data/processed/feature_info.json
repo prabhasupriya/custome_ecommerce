@@ -1,0 +1,80 @@
+{
+    "total_customers": 2577,
+    "total_features": 30,
+    "churn_rate": 0.28094683740783855,
+    "feature_list": [
+        "CustomerID",
+        "Churn",
+        "Recency",
+        "Frequency",
+        "TotalSpent",
+        "AvgOrderValue",
+        "UniqueProducts",
+        "TotalItems",
+        "AvgDaysBetweenPurchases",
+        "AvgBasketSize",
+        "StdBasketSize",
+        "MaxBasketSize",
+        "PreferredDay",
+        "PreferredHour",
+        "CountryDiversity",
+        "CustomerLifetimeDays",
+        "PurchaseVelocity",
+        "Purchases_Last30Days",
+        "Purchases_Last60Days",
+        "Purchases_Last90Days",
+        "ProductDiversityScore",
+        "TotalUniqueProducts",
+        "AvgPricePreference",
+        "StdPricePreference",
+        "MinPrice",
+        "MaxPrice",
+        "AvgQuantityPerOrder",
+        "RecencyScore",
+        "FrequencyScore",
+        "MonetaryScore",
+        "RFM_Score",
+        "CustomerSegment"
+    ],
+    "feature_categories": {
+        "rfm": [
+            "Recency",
+            "Frequency",
+            "TotalSpent",
+            "AvgOrderValue",
+            "UniqueProducts",
+            "TotalItems"
+        ],
+        "behavioral": [
+            "AvgDaysBetweenPurchases",
+            "AvgBasketSize",
+            "StdBasketSize",
+            "MaxBasketSize",
+            "PreferredDay",
+            "PreferredHour",
+            "CountryDiversity"
+        ],
+        "temporal": [
+            "CustomerLifetimeDays",
+            "PurchaseVelocity",
+            "Purchases_Last30Days",
+            "Purchases_Last60Days",
+            "Purchases_Last90Days"
+        ],
+        "product": [
+            "ProductDiversityScore",
+            "AvgPricePreference",
+            "StdPricePreference",
+            "MinPrice",
+            "MaxPrice",
+            "AvgQuantityPerOrder"
+        ],
+        "segmentation": [
+            "RecencyScore",
+            "FrequencyScore",
+            "MonetaryScore",
+            "RFM_Score",
+            "CustomerSegment"
+        ]
+    }
+}
