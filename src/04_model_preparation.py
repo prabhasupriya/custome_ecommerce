@@ -41,11 +41,11 @@ def prepare_data():
     cols_to_scale = [col for col in X_train.columns if not col.startswith('Segment_')]
     
     scaler = StandardScaler()
-    X_train[cols_to_scale] = scaler.fit_transform(X_train[cols_to_scale])
-    X_val[cols_to_scale] = scaler.transform(X_val[cols_to_scale])
-    X_test[cols_to_scale] = scaler.transform(X_test[cols_to_scale])
-    
-    # 6. Save prepared data and scaler
+    # Change these lines:
+    X_train.loc[:, cols_to_scale] = scaler.fit_transform(X_train[cols_to_scale])
+    X_val.loc[:, cols_to_scale] = scaler.transform(X_val[cols_to_scale])
+    X_test.loc[:, cols_to_scale] = scaler.transform(X_test[cols_to_scale])
+# 6. Save prepared data and scaler
     os.makedirs('data/processed', exist_ok=True)
     os.makedirs('models', exist_ok=True)
     

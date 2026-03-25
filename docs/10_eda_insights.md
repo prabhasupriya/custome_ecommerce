@@ -28,3 +28,16 @@ Based on EDA, I recommend using:
 * **H1**: Customers with Recency > 90 days are 5x more likely to churn.
 * **H2**: High-frequency customers (>10 purchases) rarely churn regardless of recency.
 * **H3**: A drop in "Purchase Velocity" over the last 60 days is a leading indicator of future churn.
+
+# EDA Key Insights
+
+1. [cite_start]**Recency Gap:** Churned customers have an average recency of 250+ days, while active users average under 50 days (p < 0.001).
+2. [cite_start]**Frequency Loyalty:** Customers with more than 5 purchases are 80% less likely to churn.
+3. [cite_start]**Monetary Spend:** High-spending customers (Top 10%) churn less frequently but represent the biggest revenue risk if they do.
+4. [cite_start]**Correlation:** Recency has a strong positive correlation (0.62) with the Churn target.
+5. [cite_start]**Class Imbalance:** The dataset is imbalanced (~28% churn), requiring specific metrics like F1-Score or Recall during modeling.
+6. [cite_start]**Velocity Factor:** Customers with decreasing purchase velocity are leading indicators of churn.
+7. [cite_start]**Purchase Recency (30 days):** Zero purchases in the last 30 days is a significant predictor of imminent churn.
+8. [cite_start]**Segment Patterns:** "At Risk" segments show high historical spend but very high recent inactivity.
+9. [cite_start]**Outliers:** Extremely high frequency (>100 orders) often represents wholesalers who rarely churn.
+10. [cite_start]**Statistical Significance:** Recency, Frequency, and TotalSpent all passed the T-test with p < 0.05.

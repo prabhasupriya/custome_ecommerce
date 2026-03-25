@@ -20,6 +20,9 @@ y_train = pd.read_csv('data/processed/y_train.csv').values.ravel()
 y_val = pd.read_csv('data/processed/y_val.csv').values.ravel()
 
 results = []
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix, roc_curve
 
 def train_and_save(name, model):
     print(f"Training {name}...")
@@ -30,6 +33,30 @@ def train_and_save(name, model):
     y_pred = model.predict(X_val)
     y_prob = model.predict_proba(X_val)[:, 1]
     
+    # --- ADDED: SAVE VISUALS FOR SLIDE 8 ---
+    if name == 'XGBoost':
+        # 1. Final Confusion Matrix
+        plt.figure(figsize=(8, 6))
+        cm = confusion_matrix(y_val, y_pred)
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+        plt.title(f'Final Confusion Matrix - {name}')
+        plt.ylabel('Actual')
+        plt.xlabel('Predicted')
+        plt.savefig('../visualizations/final_confusion_matrix.png')
+        plt.close()
+
+        # 2. ROC Curve
+        fpr, tpr, _ = roc_curve(y_val, y_prob)
+        plt.figure(figsize=(8, 6))
+        plt.plot(fpr, tpr, label=f'AUC = {roc_auc_score(y_val, y_prob):.2f}')
+        plt.plot([0, 1], [0, 1], 'k--')
+        plt.title(f'ROC Curve - {name}')
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.legend()
+        plt.savefig('../visualizations/roc_curve.png')
+        plt.close()
+
     metrics = {
         'Model': name,
         'Accuracy': accuracy_score(y_val, y_pred),
@@ -41,7 +68,6 @@ def train_and_save(name, model):
     }
     joblib.dump(model, f'../models/{name.lower().replace(" ", "_")}.pkl')
     return metrics
-
 # Run all 4 models
 results.append(train_and_save('Decision Tree', DecisionTreeClassifier(max_depth=5, random_state=42)))
 results.append(train_and_save('Random Forest', RandomForestClassifier(n_estimators=100, random_state=42)))
