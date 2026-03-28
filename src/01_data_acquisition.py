@@ -4,6 +4,11 @@ import os
 from datetime import datetime
 
 def download_dataset():
+    """
+    Downloads the Online Retail II dataset from the UCI Machine Learning Repository.
+    Returns:
+        bool: True if download successful or file exists, False otherwise.
+    """
     # URL for the Online Retail II dataset (2009-2011)
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00502/online_retail_II.xlsx"
     
@@ -25,11 +30,21 @@ def download_dataset():
     return True
 
 def load_raw_data():
+    """
+    Loads the raw Excel file into a Pandas DataFrame using openpyxl.
+    Returns:
+        pd.DataFrame: The raw transactional data.
+    """
     # We load the first sheet (2009-2010) as per standard project start
     df = pd.read_excel('data/raw/online_retail_II.xlsx', engine='openpyxl')
     return df
 
 def generate_data_profile(df):
+    """
+    Generates a text summary of the raw data including shape, types, and memory usage.
+    Args:
+        df (pd.DataFrame): The dataframe to profile.
+    """
     profile_path = 'data/raw/data_profile.txt'
     with open(profile_path, 'w') as f:
         f.write("=== DATA PROFILE SUMMARY ===\n")

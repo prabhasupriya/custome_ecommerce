@@ -10,15 +10,14 @@ ENV/
 .env
 
 # Data and Models (Keep the folders, ignore the files)
-data/raw/*.csv
-data/processed/*.csv
+
 models/*.pkl
-models/*.csv
+
 !models/.gitkeep
 
 # Jupyter Notebooks
 .ipynb_checkpoints/
-
+.sfdx/
 # OS generated files
 .DS_Store
 Thumbs.db

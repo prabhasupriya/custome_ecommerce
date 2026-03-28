@@ -7,6 +7,10 @@ import json
 import os
 
 def prepare_data():
+    """
+    Performs the final data split (Train/Val/Test) and feature scaling.
+    Saves the scaler and feature names as artifacts for the Deployment phase.
+    """
     # 1. Load data
     df = pd.read_csv('data/processed/customer_features.csv')
     

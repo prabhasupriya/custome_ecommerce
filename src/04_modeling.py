@@ -92,7 +92,7 @@ def train_models():
     with open('data/processed/model_metrics.json', 'w') as f:
         import json
         json.dump(metrics, f, indent=4)
-    print("\n✅ Metrics saved to data/processed/model_metrics.json")
+    print("\n Metrics saved to data/processed/model_metrics.json")
 
 if __name__ == "__main__":
     train_models()

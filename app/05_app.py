@@ -10,7 +10,7 @@ app = FastAPI(title="E-commerce Churn Prediction API")
 
 # 1. Load the best model and the scaler
 # Change these lines to match your actual files in the models folder
-MODEL_PATH = '/app/models/churn_model.pkl'  # Not xgboost.pkl
+MODEL_PATH = '/app/models/xgboost.pkl'  # Not xgboost.pkl
 SCALER_PATH = '/app/models/scaler.pkl'
 FEATURES_PATH = '/app/data/processed/feature_names.json'
 if not os.path.exists(MODEL_PATH) or not os.path.exists(SCALER_PATH):

@@ -1,7 +1,8 @@
 {
     "original_rows": 525461,
     "rows_after_cleaning": 342273,
-    "rows_removed": 0,
+    "rows_removed": 183188,
+    "retention_rate": 0.6514,
     "steps_applied": [
         {
             "step": "remove_missing_customer_ids",

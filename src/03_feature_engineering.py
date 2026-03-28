@@ -5,6 +5,10 @@ import json
 import os
 
 class FeatureEngineer:
+    """
+    Transforms transactional data into customer-level features (RFM).
+    Calculates churn targets based on a specific training cutoff date.
+    """
     def __init__(self, 
                  transactions_path='data/processed/cleaned_transactions.csv',
                  training_cutoff='2010-06-01'):
@@ -46,6 +50,11 @@ class FeatureEngineer:
         return self
 
     def create_rfm_features(self):
+        """
+        Aggregates transaction history into Recency, Frequency, and Monetary metrics.
+        Returns:
+            self: instance with rfm features merged into customer_features.
+        """
         print("\nCreating RFM features...")
         df = self.training_data
         rfm = df.groupby('CustomerID').agg({
@@ -125,6 +134,12 @@ class FeatureEngineer:
         return self
 
     def create_customer_value_segment(self):
+        """
+    Categorizes customers into segments (Champions, Loyal, etc.) based on RFM scores.
+    Logic: Uses quartiles to score Recency, Frequency, and Monetary values.
+    Returns:
+        self: Updated instance with 'CustomerSegment' column.
+    """
         print("\nCreating customer value segments...")
         # RecencyScore (Quartiles, inverse)
         self.customer_features['RecencyScore'] = pd.qcut(self.customer_features['Recency'].rank(method='first'), q=4, labels=[4,3,2,1]).astype(int)

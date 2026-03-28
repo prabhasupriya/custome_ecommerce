@@ -14,21 +14,31 @@ logging.basicConfig(
 )
 
 class DataCleaner:
-    def __init__(self, input_path='data/raw/online_retail_II.xlsx'):
+    """
+    A pipeline class to clean raw retail data. 
+    Handles missing values, cancelled orders, outliers, and type conversion.
+    """
+    def __init__(self, input_path='data/raw/online_retail_II.csv'):
+        # Note: Changed to .csv as per your previous terminal output
         self.input_path = input_path
         self.df = None
         self.cleaning_stats = {
             'original_rows': 0,
             'rows_after_cleaning': 0,
             'rows_removed': 0,
+            'retention_rate': 0,
             'steps_applied': []
         }
 
     def load_data(self):
-        logging.info("Loading raw dataset...")
-        # Using openpyxl as identified in your VS Code error
-        self.df = pd.read_excel(self.input_path, engine='openpyxl')
-        # Standardizing column names for the 2009-2010 dataset
+        logging.info(f"Loading raw dataset from {self.input_path}...")
+        # Check if file is Excel or CSV to avoid errors
+        if self.input_path.endswith('.xlsx'):
+            self.df = pd.read_excel(self.input_path, engine='openpyxl')
+        else:
+            self.df = pd.read_csv(self.input_path)
+            
+        # Standardizing column names
         column_mapping = {
             'Invoice': 'InvoiceNo',
             'Customer ID': 'CustomerID',
@@ -46,6 +56,7 @@ class DataCleaner:
 
     def handle_cancelled_invoices(self):
         initial = len(self.df)
+        # Convert to string to safely check for 'C'
         self.df = self.df[~self.df['InvoiceNo'].astype(str).str.startswith('C')]
         self.cleaning_stats['steps_applied'].append({'step': 'handle_cancelled_invoices', 'removed': initial - len(self.df)})
         return self
@@ -105,18 +116,44 @@ class DataCleaner:
 
     def save_cleaned_data(self):
         os.makedirs('data/processed', exist_ok=True)
+        
+        # Save CSV
         self.df.to_csv('data/processed/cleaned_transactions.csv', index=False)
-        self.cleaning_stats['rows_after_cleaning'] = len(self.df)
+        
+        # Final Stats Calculation
+        final_rows = len(self.df)
+        original_rows = self.cleaning_stats['original_rows']
+        
+        self.cleaning_stats['rows_after_cleaning'] = final_rows
+        self.cleaning_stats['rows_removed'] = original_rows - final_rows
+        self.cleaning_stats['retention_rate'] = round(final_rows / original_rows, 4)
+        
+        # Save JSON Artifact
         with open('data/processed/cleaning_statistics.json', 'w') as f:
             json.dump(self.cleaning_stats, f, indent=4)
-        print(f"Final Retention Rate: {(len(self.df)/self.cleaning_stats['original_rows']*100):.2f}%")
+            
+        print(f"--- Cleaning Complete ---")
+        print(f"Rows Removed: {self.cleaning_stats['rows_removed']}")
+        print(f"Final Retention Rate: {(self.cleaning_stats['retention_rate']*100):.2f}%")
 
     def run_pipeline(self):
-        self.load_data().remove_missing_customer_ids().handle_cancelled_invoices() \
-            .handle_negative_quantities().handle_zero_prices().handle_missing_descriptions() \
-            .remove_outliers().remove_duplicates().add_derived_columns().convert_data_types().save_cleaned_data()
+        """Executes all cleaning steps in sequence."""
+        self.load_data()
+        self.remove_missing_customer_ids()
+        self.handle_cancelled_invoices()
+        self.handle_negative_quantities()
+        self.handle_zero_prices()
+        self.handle_missing_descriptions()
+        self.remove_outliers()
+        self.remove_duplicates()
+        self.add_derived_columns()
+        self.convert_data_types()
+        self.save_cleaned_data()
         return self.df
 
 if __name__ == "__main__":
-    cleaner = DataCleaner()
+    # Ensure this points to your actual raw file (csv or xlsx)
+    RAW_DATA_PATH = 'data/raw/online_retail_II.xlsx' 
+    
+    cleaner = DataCleaner(input_path=RAW_DATA_PATH)
     cleaner.run_pipeline()
